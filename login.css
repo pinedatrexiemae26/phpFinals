@@ -1,11 +1,10 @@
 /*
- * Specific styles of signin component
- */
-/*
  * General styles
  */
  body, html {
     height: 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(241, 241, 241), rgba(153, 153, 153, 0.445));
 }
 
 .card-container.card {
@@ -41,8 +40,8 @@
 }
 
 .profile-img-card {
-    width: 70%;
-    height: 70%;
+    width: 96px;
+    height: 96px;
     margin: 0 auto 10px;
     display: block;
     -moz-border-radius: 50%;
@@ -61,32 +60,18 @@
     min-height: 1em;
 }
 
-.reauth-email {
-    display: block;
-    color: #404040;
-    line-height: 2;
-    margin-bottom: 10px;
-    font-size: 14px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
 
-.form-signin #inputEmail,
+.form-signin #inputusername,
 .form-signin #inputPassword {
     direction: ltr;
     height: 44px;
     font-size: 16px;
 }
 
-.form-signin input[type=email],
+.form-signin input[type=username],
 .form-signin input[type=password],
 .form-signin input[type=text],
-.form-signin button, select {
+.form-signin button {
     width: 100%;
     display: block;
     margin-bottom: 10px;
@@ -127,7 +112,6 @@
 .btn.btn-signin:focus {
     background-color: rgb(12, 97, 33);
 }
-
 .forgot-password {
     color: rgb(104, 145, 162);
 }
@@ -136,4 +120,7 @@
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
+}
+.btn.btn-login {
+    background-color: rgb(12, 97, 33);
 }
