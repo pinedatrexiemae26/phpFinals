@@ -27,35 +27,22 @@
    	}
    	require ('close-con.php');  
 	
-	if(isset($_POST['btnUpdate'])){
-		$name = htmlspecialchars($_POST['txtname']);
-		$price = htmlspecialchars($_POST['txtprice']);
-		$description = htmlspecialchars($_POST['txtdescription']);
-		$photo1 = htmlspecialchars($_POST['txtphoto1']);
-		$photo2 = htmlspecialchars($_POST['txtphoto2']);
+	if(isset($_POST['btnRemove'])){
 
-		$err = [];
+		require('open-con.php');
 
-		if(empty($err)){
-			require('open-con.php');
+			$strSql = "
+						DELETE FROM tbl_products
+						WHERE id = ".$_SESSION['k'];
 
-				$strSql = "
-							UPDATE tbl_products SET
-								name = '$name',
-								description = '$description',
-								price = '$price',
-								photo1 = '$photo1',
-								photo2 = '$photo2'
-							WHERE id = ".$_SESSION['k'];
+		if(mysqli_query($con, $strSql))
+			header('location:product.php');
+		
+		else
+			echo 'ERROR: Failed to Remove Record!';
 
-			if(mysqli_query($con, $strSql))
-				header('location:product.php');
-			
-			else
-				echo 'ERROR: Failed to Update Record!';
-
-			require ('close-con.php');
-		}
+		require ('close-con.php');
+	
 		
 	}
 	
@@ -70,7 +57,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
-	<title>Edit Product</title>
+	<title>Remove Product</title>
 
 </head>
 <body>
@@ -85,38 +72,41 @@
 			<div class="col-md-8">
 				<div class="card">
 						<header class="card-header">
-							<h4 class="card-title mt-2">Edit Product</h4>
+							<h4 class="card-title mt-2">Remove Product</h4>
 						</header>
 					<article class="card-body">
 
 						<form method="post">
+							<div class="col form-group">
+								<strong><p>Are you sure you want to remove the record?</p></strong>
+							</div> <!-- form-group end.// -->
 						<div class="form-row">
 							<div class="col form-group">
 								<label>Product name </label>   
-							  	<input class="form-control" type="text" name="txtname" id="txtname" placeholder="" value="<?php echo (isset($recProducts['name']) ? $recProducts['name'] : ''); ?>" required>
+							  	<input class="form-control" type="text" name="txtname" id="txtname" placeholder="" value="<?php echo (isset($recProducts['name']) ? $recProducts['name'] : ''); ?>" disabled>
 							</div> <!-- form-group end.// -->
 							<div class="col form-group">
 								<label>Price</label>
-							  	<input class="form-control" type="Number" name="txtprice" id="txtprice" placeholder="" value="<?php echo (isset($recProducts['price']) ? $recProducts['price'] : ''); ?>" required>
+							  	<input class="form-control" type="Number" name="txtprice" id="txtprice" placeholder="" value="<?php echo (isset($recProducts['price']) ? $recProducts['price'] : ''); ?>" disabled>
 							</div> <!-- form-group end.// -->
 						</div> <!-- form-row end.// -->
 						<div class="form-group">
 							<label>Description</label>
-  							<textarea class="form-control" name="txtdescription" id="txtdescription" rows="4" required><?php echo (isset($recProducts['description']) ? $recProducts['description'] : ''); ?></textarea>
+  							<textarea class="form-control" name="txtdescription" id="txtdescription" rows="4" disabled><?php echo (isset($recProducts['description']) ? $recProducts['description'] : ''); ?></textarea>
 						</div> <!-- form-group end.// -->
 						<div class="form-row">
 							<div class="form-group col-md-6">
 							  <label>Photo 1</label>
-							  <input type="text" class="form-control" name="txtphoto1" id="txtphoto1" placeholder="" value="<?php echo (isset($recProducts['photo1']) ? $recProducts['photo1'] : ''); ?>" required>
+							  <input type="text" class="form-control" name="txtphoto1" id="txtphoto1" placeholder="" value="<?php echo (isset($recProducts['photo1']) ? $recProducts['photo1'] : ''); ?>" disabled>
 							</div> <!-- form-group end.// -->
 							<div class="form-group col-md-6">
 							  <label>Photo 2</label>
-							  <input type="text" class="form-control" name="txtphoto2" id="txtphoto2" placeholder="" value="<?php echo (isset($recProducts['photo2']) ? $recProducts['photo2'] : ''); ?>" required>
+							  <input type="text" class="form-control" name="txtphoto2" id="txtphoto2" placeholder="" value="<?php echo (isset($recProducts['photo2']) ? $recProducts['photo2'] : ''); ?>" disabled>
 							</div> <!-- form-group end.// -->
 						</div> <!-- form-row.// -->
 						<div class="form-row">
 							<div class="form-group col-md-6">
-							  <button type="submit" class="btn btn-primary btn-block" name="btnUpdate">Update Product</button>
+							  <button type="submit" class="btn btn-primary btn-block" name="btnRemove">Yes Remove Product</button>
 							</div> <!-- form-group end.// -->
 							<div class="form-group col-md-6">
 							   <a href="product.php" class="btn btn-danger btn-block">Cancel/Go Back</a>
