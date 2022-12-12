@@ -22,7 +22,7 @@ session_start();
         <hr>
         <?php
             if(isset($_POST['btnconfirm'])){
-                require_once('open-connection.php');
+                require_once('open-con.php');
                 if(isset($_POST['usertype'])){
                     $type = ($_POST['usertype']);
                     $strtype = implode($type);
@@ -130,7 +130,7 @@ session_start();
                                     </div>';
                             }
                         }
-                        require_once('close-connection.php');
+                        require_once('close-con.php');
                     }
                     else {
                         echo'<div class="container-fluid text-center pt-3 mx-auto" style="width: 380px">
