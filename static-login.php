@@ -106,7 +106,7 @@ elseif(isset($_SESSION['costuuser'])){
                 <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
                 <p id="profile-name" class="profile-name-card"></p>
                 <select name="usertype[]"  class="form-control" id="usertype">
-                    <option value="Costumer">Costumer</option>
+                    <option value="Costumer">Customer</option>
                     <option value="Admin">Admin</option>
                 </select><br>
                 <input type="text" name="txtusername" id="txtusername" class="form-control" placeholder="User Name" required autofocus>

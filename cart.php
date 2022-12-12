@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require ('open-connection.php');
+    require ('open-con.php');
     $strSql= "SELECT * FROM tbl_products WHERE id = ".$_SESSION['k'];
     
     if($rsProducts = mysqli_query($con, $strSql)){
@@ -59,7 +59,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Learn IT Easy Online Shop | Shopping Cart</title>
 </head>
 <body>
@@ -96,20 +96,12 @@
                         </thead>
                         <tbody>
                             
-                            <!-- this is the part where we assemble our cart intl_get_error_message
-                            we started it by testing out if the cartItems is set, meaning if the user has already purchased something
-                            then we perfom a nested foreach in order to extract all the values we need from our session cartItems
-                            remember that the structure of our session cartitems goes like this
-                            $_SESSION['cartItems'][key][size] = quantity -->
-
+                            
                             <?php if(isset($_SESSION['cartItems'])): ?>
                                 <?php foreach($_SESSION['cartItems'] as $key => $value): ?>
                                     <?php foreach($value as $size => $quantity): ?>
 
-                                        <!-- this is where we recompute our sesstion totalamount value based on the price of the selected item multiplied by the number of purchased item -->
-                                                                
                                         
-                                        <!-- following are just print outs of values and components that should appear in the cart table -->
                                         <tr>                                        
                                             <td><img src="img/<?php echo $arrProducts[$key]['photo1']; ?>" class="img-thumbnail" style="height: 50px;"></td>
                                             <td><?php echo $recProducts['name']; ?></td>
